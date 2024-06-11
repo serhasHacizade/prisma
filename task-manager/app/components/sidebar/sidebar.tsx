@@ -35,7 +35,7 @@ const Sidebar = () => {
       <ul className="nav-items">
         {menu.map((item) => {
           const link = item.link;
-          return <li className={`nav-item ${pathname === link ? "active" : ""}`} onClick={() => handleClick(link)}>
+          return <li key={item.link} className={`nav-item ${pathname === link ? "active" : ""}`} onClick={() => handleClick(link)}>
             {item.icon}
             <Link href={link}>{item.title}</Link>
           </li>
@@ -67,6 +67,82 @@ const SidebarStyled = styled.nav`
     color: ${(props) => props.theme.colorGrey0};
     display: flex;
     align-items: center;
+
+    .profile-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      backdrop-filter: blur(10px);
+      z-index: 0;
+      background: ${(props) => props.theme.colorBg3};
+      transition: all 0.55s linear;
+      border-radius: 1rem;
+      border: 2px solid ${(props) => props.theme.borderColor2};
+      opacity: 0.2;
+    }
+    h1 {
+      font-size: 1.2rem;
+      display: flex;
+      flex-direction: column;
+      line-height: 1.4rem
+    }
+    
+    .image, h1 {
+      position: relative;
+      z-index: 1;
+    }
+
+    .image {
+      flex-shrink: 0;
+      display: inline-block;
+      overflow: hidden;
+      transition: all 0.55s ease;
+      border-radius: 100%
+    }
+    h1 {
+      margin-left: 0.5rem
+    }
+    &:hover {
+      .profile-overlay {
+        opacity: 0.5;
+        border: 2px solid ${(props) => props.theme.borderColor2}
+      }
+
+      img {
+        transform: scale(1.1);
+      }
+    }
+  }
+
+  .nav-item {
+    padding: 0.6rem 1rem 1rem 2.1rem;
+    margin: 0.3rem 0;
+
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    cursor: pointer;
+    &::after {
+      position: absolute;
+      content: "";
+      left: 0;
+      top: 0;
+      width: 0;
+      background-color: ${(props) => props.theme.activeNavLinkHover};
+      z-index: 1;
+      transition: all 0.3s ease-in-out;
+      }
+      &::before {
+      position: absolute;
+      content: "";
+      left: 0;
+      top: 0;
+      width: 100%;
+      background-color: ${(props) => props.theme.colorGreenDark};
+      border-bottom-left-radius: 5px;
+      border-top-left-radius: 5px;
+    }
   }
 `
 
