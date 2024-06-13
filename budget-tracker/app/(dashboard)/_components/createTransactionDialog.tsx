@@ -1,4 +1,4 @@
-
+"use client"
 
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { TransactionType } from '@/lib/types';
@@ -9,6 +9,7 @@ import { useForm } from 'react-hook-form';
 import {zodResolver} from "@hookform/resolvers/zod";
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
+import CategoryPicker from './CategoryPicker';
 
 interface Props {
     trigger: React.ReactNode;
@@ -47,7 +48,7 @@ const CreateTransactionDialog = ({ trigger, type }: Props) => {
                             <FormItem>
                                 <FormLabel>Amount</FormLabel>
                                 <FormControl>
-                                    <Input defaultValue={0} {...field} type="number"/>
+                                    <Input defaultValue={0} {...field} type="number" min={0}/>
                                 </FormControl>
                                 <FormDescription>Transaction amount (required)</FormDescription>
                             </FormItem>
@@ -57,7 +58,7 @@ const CreateTransactionDialog = ({ trigger, type }: Props) => {
                             <FormItem>
                                 <FormLabel>Category</FormLabel>
                                 <FormControl>
-                                    
+                                    <CategoryPicker type={type}/>
                                 </FormControl>
                                 <FormDescription>Select a category for this transaction</FormDescription>
                             </FormItem>
