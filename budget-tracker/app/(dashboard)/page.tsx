@@ -6,6 +6,7 @@ import React from "react";
 
 import CreateTransactionDialog from "./_components/createTransactionDialog";
 import Overview from "./_components/Overview";
+import History from "./_components/History";
 
 const Page = async () => {
 
@@ -45,6 +46,8 @@ const Page = async () => {
                 </div>
             </div>
             <Overview userSettings={userSettings}/>
+            <History userSettings={userSettings}/>
+
         </div>
     );
 }
