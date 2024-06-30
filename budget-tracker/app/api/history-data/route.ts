@@ -8,7 +8,7 @@ import { z } from "zod";
 const getHistoryDataSchema = z.object({
   timeframe: z.enum(["month", "year"]),
   month: z.coerce.number().min(0).max(11).default(0),
-  year: z.coerce.number().min(2000).max(300),
+  year: z.coerce.number().min(2000).max(3000),
 });
 
 export const GET = async (request: Request) => {
@@ -125,7 +125,7 @@ const getMonthHistoryData = async (
 
   const daysInMonth = getDaysInMonth(new Date(year, month));
 
-  for (let i = 0; i < daysInMonth; i++) {
+  for (let i = 1; i < daysInMonth; i++) {
     let expense = 0;
     let income = 0;
 
