@@ -15,6 +15,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
+import { DeleteTransaction } from "../_actions/deleteTransaction";
 interface Props {
   open: boolean;
   setOpen: (open: boolean) => void;
